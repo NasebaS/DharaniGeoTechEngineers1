@@ -4,6 +4,8 @@ import SearchableDropdown from 'react-native-searchable-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../assets/Colors/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+
 
 const data = [
     { id: 1, name: 'Cement' },
@@ -15,10 +17,10 @@ const data = [
     // Add more materials as needed
   ];
   const quantities = [
-    { id: 1, name: '1' },
-    { id: 2, name: '2' },
-    { id: 3, name: '3' },
-    { id: 4, name: '4' },
+    { id: 1, value: '1' },
+    { id: 2, value: '2' },
+    { id: 3, value: '3' },
+    { id: 4, value: '4' },
     // Add more quantities as needed
   ];
   
@@ -44,13 +46,22 @@ const SearchableDropDown = () => {
     return formattedDate;
   };
     const onItemSelect = (item) => {
-      setSelectedItem(item);
+      setSelectedItems((prevItems) => [...prevItems, item]);
     };
-    // const toggleItems = () => {
-    //     setShowItems((prevShowItems) => !prevShowItems);
-    //   };
+    const deleteItem = (itemId) => {
+      setSelectedItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+    };
+    const renderSelectedItem = ({ item }) => (
+      <View style={styles.tableRow}>
+        <Text style={styles.tableCell}>{item.name}</Text>
+        <Text style={styles.tableCell}>{item.name}</Text>
+        <TouchableOpacity onPress={() => deleteItem(item.id)}>
+          <Icon name="trash" size={24} color="red" />
+        </TouchableOpacity>
+      </View>
+    );
       const onQuantitySelect = (item) => {
-        setSelectedQuantity(item);
+        setSelectedItems((prevItems) => [...prevItems, item]);
       };
     return (
        <View style={styles.container}>
@@ -168,7 +179,7 @@ const SearchableDropDown = () => {
             <Text style={styles.productQuantityText}>Selected Product:</Text>
             <Text style={styles.productQuantityValue}>{selectedItem.name}</Text>
             <Text style={styles.productQuantityText}>Selected Quantity:</Text>
-            <Text style={styles.productQuantityValue}>{selectedQuantity.name}</Text>
+            <Text style={styles.productQuantityValue}>{selectedQuantity.value}</Text>
           </View>
         )}
         </View>
