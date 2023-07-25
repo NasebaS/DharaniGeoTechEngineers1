@@ -1,0 +1,136 @@
+92BF3E
+rgb(23,100,145)
+rgb(51,67,190) 
+3343BE  blue
+rgb(98,0,238)
+rgb(98,0,238)
+6200EE  blue
+rgb(143,17,229)
+rgb(143,17,229)
+8F11E5
+
+react native dashboard
+table
+chart
+graph
+
+
+JWT Authenication
+
+
+circular slider
+
+https://www.npmjs.com/package/react-native-circular-progress-indicator
+
+https://www.npmjs.com/package/react-native-progress
+
+'#0E5583 blue
+#95BF40 green
+logo colors
+
+Teal and Coral:
+
+Teal: #008080***
+Coral: #FF7F50
+Purple and Gold:
+
+Purple: #800080
+Gold: #FFD700
+Midnight Blue and Silver:
+
+Midnight Blue: #191970****
+Silver: #C0C0C0
+Orchid and Turquoise:
+
+Orchid: #DA70D6
+Turquoise: #40E0D0
+Maroon and Champagne:
+
+Maroon: #800000
+Champagne: #F7E7CE
+Navy Blue and Peach:
+
+Navy Blue: #000080
+Peach: #FFDAB9
+Olive and Coral:
+
+Olive: #808000
+Coral: #FF7F50
+Indigo and Lime Green:
+
+Indigo: #4B0082
+Lime Green: #00FF00
+
+rgb(44,80,152)
+2C5098
+
+
+EEEDED
+FAF3F0
+F4F2DE
+EDE4FF
+
+
+  cardValue: {
+    fontSize: 24,
+
+    cardTitle: {
+    fontSize: 16,
+
+     card: {
+    backgroundColor: '#fff',
+    padding: 20,
+    marginVertical: 10,
+    borderRadius: 8,
+    elevation: 5,
+    minWidth: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  daily expense
+  labels: mon tues wed thrus fri satu sun
+          amount
+
+          bar chart
+
+monthly expense
+labels; months'
+amount
+
+
+line chart
+
+total expense vs cash in hand
+
+
+
+***********
+container: {
+    flex: 1,
+  },
+  bluecontainer: {
+    backgroundColor: Colors.primary,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: '90%',
+  },
+  contentContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingTop: '10%',
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    marginBottom: 15,
+    width: '90%',
+  },
