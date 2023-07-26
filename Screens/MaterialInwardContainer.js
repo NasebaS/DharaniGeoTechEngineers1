@@ -20,7 +20,7 @@ const MaterialInwardRequest = ({ request }) => {
     if (status === 'approved') {
       return (
         <View style={[styles.statusIconContainer, getStatusColor()]}>
-          <Icon name="checkmark-circle" size={24} color="#FFF" />
+          <Icon name="checkmark-circle" size={20} color="#FFF" />
           <Text style={[styles.statusText, { color: '#FFF' }]}>Approved</Text>
         </View>
       );
@@ -47,11 +47,14 @@ const MaterialInwardRequest = ({ request }) => {
       <View style={styles.infoContainer}>
         <View style={styles.rowContainer}>
           <Icon name="document-text-outline" size={20} color="#2196F3" style={styles.icon} />
-          <Text style={[styles.requestNumber, { color: '#FF5722' }]}>{requestNumber}</Text>
+          <View style={styles.requestcontainer}>
+            <Text style={styles.requestNumber}>{requestNumber}</Text>
+            <Text style={styles.requestDate}>{requestDate}</Text>
+          </View>
         </View>
         <View style={styles.rowContainer}>
-        <Icon name="calendar-outline" size={20} color="#2196F3" style={styles.icon} />
-          <Text style={[styles.requestDate, { color: '#2196F3' }]}>{requestDate}</Text>
+          <Icon name="cube-outline" size={20} color="#2196F3" style={styles.icon} />
+          <Text style={styles.quantity}>Quantity: 1{quantity}</Text>
         </View>
       </View>
       <View style={styles.statusContainer}>
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingHorizontal: 30,
+    paddingHorizontal: 10,
     paddingVertical: 12,
     borderRadius: 8,
     marginBottom: 10,
@@ -81,24 +84,39 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
   },
+  requestcontainer:{
+   flexDirection:'row',
+   justifyContent:"space-between",
+   alignItems:"center",
+   marginLeft:5
+  },
   rowContainer: {
     flexDirection: 'row',
+   
     alignItems: 'center',
     marginBottom: 8,
   },
   icon: {
-    marginRight: 8,
+    marginRight: 6,
     // color: '#FF9800',
   },
   requestNumber: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
-    // color: '#FF9800',
+    color: '#FF5722',
   },
   requestDate: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#2196F3',
-   
+   marginLeft:5
+  },
+  quantity: {
+    fontSize: 14,
+    color: '#B728E6',
+    fontWeight: 'bold',
+    backgroundColor: '#F3E5F5',
+    padding: 4,
+    borderRadius: 8,
   },
   statusContainer: {
     flexDirection: 'row',
@@ -110,12 +128,23 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 10,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#CCC',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+    backgroundColor: '#FFF',
   },
+  
   statusText: {
     marginLeft: 6,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'bold',
+    marginRight: 4,
   },
+  
   editIconContainer: {
     marginLeft: 12,
   },
