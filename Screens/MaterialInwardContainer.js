@@ -20,14 +20,14 @@ const MaterialInwardRequest = ({ request }) => {
     if (status === 'approved') {
       return (
         <View style={[styles.statusIconContainer, getStatusColor()]}>
-          <Icon name="checkmark-circle" size={20} color="#FFF" />
+          <Icon name="checkmark-circle" size={18} color="#FFF" />
           <Text style={[styles.statusText, { color: '#FFF' }]}>Approved</Text>
         </View>
       );
     } else if (status === 'pending') {
       return (
         <View style={[styles.statusIconContainer, getStatusColor()]}>
-          <Icon name="hourglass-outline" size={24} color="#FFF" />
+          <Icon name="hourglass-outline" size={21} color="#FFF" />
           <Text style={[styles.statusText, { color: '#FFF' }]}>Pending</Text>
         </View>
       );
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   requestDate: {
     fontSize: 12,
     color: '#2196F3',
-   marginLeft:5
+   marginLeft:15
   },
   quantity: {
     fontSize: 14,
