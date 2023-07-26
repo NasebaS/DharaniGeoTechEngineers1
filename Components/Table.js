@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Table, Row } from 'react-native-table-component';
-import Colors from '../assets/Colors/Colors'; // Import your Colors file
+import Colors from '../assets/Colors/Colors'; 
 
 const TableComponent = ({ data, onDeleteItem }) => {
   const tableHead = ['Product', 'Quantity', 'Action'];
@@ -34,7 +34,8 @@ const TableComponent = ({ data, onDeleteItem }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={false}>
+      <ScrollView horizontal={false}
+     >
         <View>
           <View style={styles.tableHeader}>
             <Row data={tableHead} textStyle={styles.tableHeaderText} flexArr={headerFlexArr} />
@@ -54,7 +55,9 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     marginBottom: 5,
+    marginTop:-30
   },
+ 
   tableHeader: {
     height: 50,
     backgroundColor: Colors.primary,
@@ -71,14 +74,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   tableContainer: {
-    maxHeight: 300, // Set a fixed height for the table to make it scrollable
+    maxHeight: 380, 
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
     elevation: 2,
   },
   tableBorder: {
-    borderWidth: 0, // Remove outer border
+    borderWidth: 0,
   },
   tableRow: {
     height: 50,
@@ -96,7 +99,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 8,
     fontSize: 16,
-    color: Colors.primaryText, // Customize text color
+    color: '#000', 
+    fontWeight:"600"
   },
   actionButton: {
     padding: 8,

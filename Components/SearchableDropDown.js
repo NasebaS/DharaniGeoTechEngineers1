@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Table from '../Components/Table';
 
 const data = [
-    { id: 1, name: 'Cementaaaaaaasfgsdfgsdfgsdgsfgsaaaa' },
+    { id: 1, name: 'Cement' },
     { id: 2, name: 'Steel' },
     { id: 3, name: 'Bricks' },
     { id: 4, name: 'Sand' },
@@ -117,11 +117,11 @@ const SearchableDropDown = () => {
           }}
           itemStyle={{
             padding: 10,
-            marginTop: 2,
-            borderRadius: 10,
+            marginTop: 0,
+            borderRadius: 2,
             backgroundColor: '#f7f7f7',
-            borderColor: '#bbb',
-            borderWidth: 1,
+            borderColor: '#BACDDB',
+            borderWidth: 1.5,
           
           }}
           defaultIndex={0}
