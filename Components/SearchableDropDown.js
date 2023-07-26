@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text,StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text,TextInput,StyleSheet, TouchableOpacity } from 'react-native';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../assets/Colors/Colors';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+import Icon from 'react-native-vector-icons/Ionicons'; 
 import Table from '../Components/Table';
 
 const data = [
-    { id: 1, name: 'Cement' },
+    { id: 1, name: 'Cementaaaaaaasfgsdfgsdfgsdgsfgsaaaa' },
     { id: 2, name: 'Steel' },
     { id: 3, name: 'Bricks' },
     { id: 4, name: 'Sand' },
@@ -16,17 +16,17 @@ const data = [
     // Add more materials as needed
   ];
   const quantities = [
-    { id: 1, value: '1' },
-    { id: 2, value: '2' },
-    { id: 3, value: '3' },
-    { id: 4, value: '4' },
+    { id: 1, value: 1 },
+    { id: 2, value: 2},
+    { id: 3, value: 3 },
+    { id: 4, value: 4 },
     // Add more quantities as needed
   ];
   
 
 const SearchableDropDown = () => {
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [selectedQuantity, setSelectedQuantity] = useState(null);
+    const [selectedItem, setSelectedItem] = useState({});
+    const [selectedQuantity, setSelectedQuantity] = useState({});
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [selectedItemsTable, setSelectedItemsTable] = useState([]); 
@@ -45,26 +45,18 @@ const SearchableDropDown = () => {
     return formattedDate;
   };
   const onItemSelect = (item) => {
-    setSelectedItem(item);
+    setSelectedItem(item);   
+    console.log(item)
   };
     const deleteItem = (itemId) => {
-      setSelectedItem((prevItems) => prevItems.filter((item) => item.id !== itemId));
+      setSelectedItemsTable((prevItems) => 
+      prevItems.filter((item) => item.product.id !== itemId));
     };
-    // const renderSelectedItem = ({ item }) => (
-    //   <View style={styles.tableRow}>
-    //     <Text style={styles.tableCell}>{item.name}</Text>
-    //     <Text style={styles.tableCell}>{item.name}</Text>
-    //     <TouchableOpacity onPress={() => deleteItem(item.id)}>
-    //       <Icon name="trash" size={24} color="red" />
-    //     </TouchableOpacity>
-    //   </View>
-    // );
+ 
     const onQuantitySelect = (item) => {
       setSelectedQuantity(item);
-      setSelectedItemsTable((prevSelectedItems) => [
-        ...prevSelectedItems,
-        { product: selectedItem, quantity: item },
-      ]);
+      console.log(item)
+    
     };
     const onAddToTable = () => {
       if (selectedItem && selectedQuantity) {
@@ -72,9 +64,15 @@ const SearchableDropDown = () => {
           ...prevSelectedItems,
           { product: selectedItem, quantity: selectedQuantity },
         ]);
-        setSelectedItem(null);
-        setSelectedQuantity('');
+        setSelectedItem({});
+      setSelectedQuantity({});
+        console.log(selectedItemsTable)
       }
+    };
+    const onSave = () => {
+      // Implement your save logic here
+      // For example, you can save the selected items to a database or perform other actions
+      console.log("Save button clicked");
     };
     return (
        <View style={styles.container}>
@@ -103,28 +101,19 @@ const SearchableDropDown = () => {
         <View style={styles.dropdownContainer}>
             
         <SearchableDropdown
-          onTextChange={(text) => console.log(text)} // You can use this to implement custom search logic if needed
+          onTextChange={selectedItem} // You can use this to implement custom search logic if needed
           onItemSelect={onItemSelect}
           containerStyle={{ padding: 10,width:'80%' }}
           textInputStyle={{
             padding: 12,
             borderWidth: 2,
-            borderColor: '#42a5f5', // Your desired border color
-  borderRadius: 5,
+            borderColor: '#42a5f5', 
+  borderRadius: 8,
   backgroundColor: '#fff',
-  color: '#42a5f5', // Color of the selected item text
+  color: '#42a5f5', 
   fontWeight: 'bold',
   fontSize: 16,
-  padding: 12,
-  borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 20, // Adjust the radius as needed
-  backgroundColor: '#fff',
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.3,
-  shadowRadius: 4,
-  elevation: 5, // Add elevation for Android shadow effect
+
           }}
           itemStyle={{
             padding: 10,
@@ -135,10 +124,11 @@ const SearchableDropDown = () => {
             borderWidth: 1,
           
           }}
+          defaultIndex={0}
+          selectedItems={selectedItem}
           itemTextStyle={{ color: '#222',fontWeight:'bold' }}
           itemsContainerStyle={{ maxHeight: 140 }}
           items={data}
-          defaultIndex={0}
           placeholder="Select the Product"
           resetValue={false}
           underlineColorAndroid="transparent"
@@ -150,17 +140,21 @@ const SearchableDropDown = () => {
           value={selectedQuantity}
           onChangeText={onQuantitySelect}
           keyboardType="numeric"
-          placeholder="Enter quantity"
+          placeholder="Quantity"
         />
         <TouchableOpacity style={styles.addButton} onPress={onAddToTable}>
-          <Text style={styles.addButtonText}>Add</Text>
+        <Icon name="add-circle-sharp" size={50} color='#0E5583' />
         </TouchableOpacity>
       </View>
         
 </View></View></View></View>
 {selectedItemsTable.length > 0 && (
-        <Table data={selectedItemsTable} onDeleteItem={deleteItem} />
+        <Table data={selectedItemsTable} onDeleteItem={deleteItem}  />
       )}
+       {/* Save Button */}
+       <TouchableOpacity style={styles.saveButton} onPress={onSave}>
+        <Text style={styles.saveButtonText}>Save</Text>
+      </TouchableOpacity>
         </View>
       </View>
     );
@@ -169,13 +163,14 @@ const SearchableDropDown = () => {
   export default SearchableDropDown;
 
   const styles = StyleSheet.create({
-    
+   
   dropdownRowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    
   },
   dropdownWrapper: {
-    width: '100%', // Adjust this value to control the width of each dropdown
+    width: '90%', // Adjust this value to control the width of each dropdown
   },
     container: {
         flex: 1,    
@@ -197,7 +192,7 @@ const SearchableDropDown = () => {
         paddingHorizontal: 10,
         borderRadius:20,
         flex: 1,
-        
+        marginTop: 5, 
       },
       datePickerContainer: {
         marginTop:10,
@@ -217,12 +212,7 @@ const SearchableDropDown = () => {
         flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
-//   paddingVertical: 1,
-//   paddingHorizontal: 30,
-//   borderWidth: 2,
-//   borderColor: '#42a5f5',
-//   borderRadius: 5,
-//   backgroundColor: '#fff',
+top:-50,
       },
       selectOptionText: {
         fontSize: 20,
@@ -250,33 +240,51 @@ const SearchableDropDown = () => {
       quantityInputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         marginTop: 20,
         marginBottom: 10,
+        width: '50%',
+        
       },
       quantityInput: {
-        flex: 1,
-        height: 40,
-        borderWidth: 1,
+        flex: 0.7,
+        maxHeight: 140,
+        borderWidth: 2,
         borderColor: '#42a5f5',
-        borderRadius: 5,
+        borderRadius: 8,
         paddingHorizontal: 10,
         backgroundColor: '#fff',
-        color: '#333',
+        color: '#42a5f5', 
+        fontWeight: 'bold',
+        fontSize: 12,
+        padding: 10,
+        marginTop: 2,
+        top:-5
       },
       addButton: {
-        marginLeft: 10,
-        backgroundColor: '#42a5f5',
+        marginRight: 30,
         borderRadius: 5,
-        paddingVertical: 8,
-        paddingHorizontal: 15,
+       
+        
       },
       addButtonText: {
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 16,
       },
-    
+      saveButton: {
+        marginTop: 20,
+        paddingVertical: 15,
+        backgroundColor: Colors.primary,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      saveButtonText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
     
   })
   
