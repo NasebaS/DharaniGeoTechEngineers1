@@ -34,9 +34,9 @@ function Main() {
       drawerStyle={styles.drawerStyle}
       >
          
-        <Drawer.Screen name="Logout " component={Logout} />
-        <Drawer.Screen name="Profile" component={Profile} />
+        {/* <Drawer.Screen name="Logout " component={Logout} /> */}
         <Drawer.Screen name="Dashboard" component={Dashboard} />
+        <Drawer.Screen name="Profile" component={Profile} />       
         <Drawer.Screen name="Attendance entry" component={AttendanceEntry} />
         <Drawer.Screen name="Edit Attendance" component={EditAttendance} />
         <Drawer.Screen name="Material request" component={MaterialRequest} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Table, Row } from 'react-native-table-component';
-import Colors from '../assets/Colors/Colors'; 
+import Colors from '../assets/Colors/Colors';
 
 const TableComponent = ({ data, onDeleteItem }) => {
   const tableHead = ['Product', 'Quantity', 'Action'];
@@ -14,8 +14,8 @@ const TableComponent = ({ data, onDeleteItem }) => {
       <Row
         key={index}
         data={[
-          item.product.name,
-          item.quantity,
+          <Text style={styles.productText}>{item.product.name}</Text>,
+          <Text style={styles.quantityText}>{item.quantity}</Text>,
           <TouchableOpacity onPress={() => onDeleteItem(item.product.id)} style={styles.actionButton}>
             <Icon name="trash" size={24} color="#F15A59" />
           </TouchableOpacity>
@@ -34,8 +34,7 @@ const TableComponent = ({ data, onDeleteItem }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={false}
-     >
+      <ScrollView horizontal={false}>
         <View>
           <View style={styles.tableHeader}>
             <Row data={tableHead} textStyle={styles.tableHeaderText} flexArr={headerFlexArr} />
@@ -53,11 +52,10 @@ const TableComponent = ({ data, onDeleteItem }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     marginBottom: 5,
-    marginTop:-30
+    marginTop: -30
   },
- 
   tableHeader: {
     height: 50,
     backgroundColor: Colors.primary,
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   tableContainer: {
-    maxHeight: 380, 
+    maxHeight: 380,
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
@@ -84,13 +82,13 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   tableRow: {
-    height: 50,
+    height: 70,
     flexDirection: 'row',
     paddingHorizontal: 10,
     alignItems: 'center',
   },
   evenRow: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#F5F5F5',
   },
   oddRow: {
     backgroundColor: '#E1F0F5',
@@ -99,8 +97,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 8,
     fontSize: 16,
-    color: '#000', 
-    fontWeight:"600"
+    color: '#000',
+    fontWeight: '600',
+  },
+  productText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.primary,
+  },
+  quantityText: {
+    fontSize: 14,
+    color: '#333',
+    fontWeight:'bold'
   },
   actionButton: {
     padding: 8,

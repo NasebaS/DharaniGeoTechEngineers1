@@ -70,6 +70,8 @@ FAF3F0
 F4F2DE
 EDE4FF
 
+E1F0F5
+F5F5F5
 
   cardValue: {
     fontSize: 24,

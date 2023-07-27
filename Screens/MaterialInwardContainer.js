@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
   requestDate: {
     fontSize: 12,
     color: '#2196F3',
-   marginLeft:15
+   marginLeft:15,
+   fontWeight:"700"
   },
   quantity: {
     fontSize: 14,
