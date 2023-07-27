@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import materialInwardRequests from '../assets/MaterialInwardRequests';
+import materialInwardData from '../assets/MaterialInwardData';
 import MaterialInwardContainer from './MaterialInwardContainer';
 import Colors from '../assets/Colors/Colors';
 
@@ -8,7 +8,7 @@ const MaterialInward = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={materialInwardRequests}
+        data={materialInwardData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <MaterialInwardContainer request={item} />}
       />

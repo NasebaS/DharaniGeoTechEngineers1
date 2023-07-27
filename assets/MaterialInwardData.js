@@ -1,4 +1,4 @@
-const materialInwardRequests = [
+const materialInwardData = [
     {
       id: 1,
       requestNumber: 'REQ001',
@@ -84,4 +84,4 @@ const materialInwardRequests = [
       },
     // Add more requests as needed
   ];
-   export default materialInwardRequests;
+   export default materialInwardData;
