@@ -21,7 +21,11 @@ const ExpenseEntryScreen = () => {
     />
   );
   const handleEditPress = () => {
-    navigation.navigate('EditExpenseEntry');
+    navigation.navigate('Edit Expense Entry');
+  };
+  const handleAddPress = () => {
+    navigation.navigate('Edit Expense Entry')
+    
   };
   const renderItem = ({ item }) => (
     <View style={styles.expenseContainer}>

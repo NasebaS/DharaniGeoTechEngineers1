@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; 
 import ExpenseTable from '../Components/ExpenseTable'
 import { PieChart } from 'react-native-chart-kit';
-import { useNavigation } from '@react-navigation/native';
+
 
 const data = [
     { id: 1, name: 'Petrol', amount: 1000 },
@@ -24,30 +24,26 @@ const data = [
   
 const EditExpenseEntry = () => {
     const [selectedItem, setSelectedItem] = useState({});   
-    const [expenses, setExpenses] = useState({});
+   
     const [selectedAmount, setSelectedAmount] = useState({});
     const [selectedItemsTable, setSelectedItemsTable] = useState([]);
     const [additionalDetails, setAdditionalDetails] = useState(''); 
       
-    const navigation=useNavigation()
+   
         
           
    
   const onItemSelect = (item) => {
-    setSelectedItem(item.name);   
-    console.log(item.name)
+    setSelectedItem(item);   
+    console.log(item)
   };
   const onAmountSelect = (item) => {
     setSelectedAmount(item); 
     console.log(item)
   };
-  const GoBack = () => {
-    navigation.goBack();
-    
-  };
+  
   const onSave = () => {
-    // Implement your save logic here
-    // For example, you can save the selected items to a database or perform other actions
+    
     console.log("Save button clicked");
   };
   const onAddExpense = () => {
@@ -75,15 +71,8 @@ const EditExpenseEntry = () => {
     return (
        <View style={styles.container}>
       
-      <View style={styles.bluecontainer}>
-        {/*back icon */}
-      <TouchableOpacity style={styles.backButton} onPress={GoBack} activeOpacity={0.8}>
-      <FontAwesome name="caret-left" size={24} color={Colors.primary}/>
-    </TouchableOpacity>
-        {/* Header */}
-        <Text style={styles.headerText}>Edit Expense Entry</Text>
-      </View>
-      
+      <View style={styles.bluecontainer}/>
+       
       <View style={styles.backContainer}>
        
       
@@ -118,7 +107,7 @@ const EditExpenseEntry = () => {
           
           }}
           defaultIndex={0}
-          defaultSelectedItems={selectedItem}
+          selectedItems={selectedItem}
           itemTextStyle={{ color: '#222',fontWeight:'bold' }}
           itemsContainerStyle={{ maxHeight: 140 }}
           items={data}
@@ -200,7 +189,7 @@ const EditExpenseEntry = () => {
       backContainer:{
         backgroundColor: '#ccc',
         position:'absolute',
-        top:'10%',
+        top:'3%',
        bottom:0,
         width: '100%',
         paddingVertical: 10,
@@ -318,6 +307,7 @@ top:-50,
         marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
+        top:-20
       },
       totalExp: {
         fontWeight: 'bold',

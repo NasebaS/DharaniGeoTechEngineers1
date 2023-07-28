@@ -13,15 +13,9 @@ const data = [
     { id: 4, name: 'Sand' },
     { id: 5, name: 'Concrete Blocks' },
     { id: 6, name: 'Plywood' },
-    // Add more materials as needed
+    
   ];
-  // const quantities = [
-  //   { id: 1, value: 1 },
-  //   { id: 2, value: 2},
-  //   { id: 3, value: 3 },
-  //   { id: 4, value: 4 },
-  //   // Add more quantities as needed
-  // ];
+  
   
 
 const SearchableDropDown = () => {

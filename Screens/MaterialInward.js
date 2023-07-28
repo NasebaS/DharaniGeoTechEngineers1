@@ -5,7 +5,11 @@ import MaterialInwardContainer from './MaterialInwardContainer';
 import Colors from '../assets/Colors/Colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const MaterialInward = () => {
+const MaterialInward = ({navigation}) => {
+
+  const handleAddPress=()=>{
+    navigation.navigate('Edit Material Inward')
+    }
   return (
     <View style={styles.container}>
       <FlatList

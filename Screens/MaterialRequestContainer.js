@@ -44,7 +44,7 @@ const MaterialRequestContainer = ({ request}) => {
     }
   };
 const editPress=()=>{
-navigation.navigate('Edit Material request')
+navigation.navigate('Edit Material Request')
 }
   return (
     <TouchableOpacity style={styles.container}>

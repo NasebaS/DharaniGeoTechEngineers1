@@ -5,7 +5,11 @@ import MaterialRequestContainer from './MaterialRequestContainer';
 import Colors from '../assets/Colors/Colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const MaterialRequest = () => {
+const MaterialRequest = ({navigation}) => {
+
+  const handleAddPress=()=>{
+    navigation.navigate('Edit Material Request')
+    }
   return (
     <View style={styles.container}>
       <FlatList

@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     marginBottom: 3,
-    marginTop: 10
+    marginTop: 10,
+    bottom:20
+   
   },
   tableHeader: {
     height: 50,
@@ -71,17 +73,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   tableContainer: {
-    maxHeight: 265,
+    maxHeight: 250,
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
-    elevation: 2,
+    elevation: 5,
   },
   tableBorder: {
     borderWidth: 0,
   },
   tableRow: {
-    height: 50,
+    height: 40,
     flexDirection: 'row',
     paddingHorizontal: 10,
     alignItems: 'center',

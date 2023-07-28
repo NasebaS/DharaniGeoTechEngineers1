@@ -41,12 +41,12 @@ function Main() {
         <Drawer.Screen name="Profile" component={Profile} />       
         <Drawer.Screen name="Attendance entry" component={AttendanceEntry} />
         <Drawer.Screen name="Edit Attendance" component={EditAttendance} />
-        <Drawer.Screen name="Edit Material request" component={EditMaterialRequest} />
+        <Drawer.Screen name="Edit Material Request" component={EditMaterialRequest} />
         <Drawer.Screen name="Material Request" component={MaterialRequest} />
         <Drawer.Screen name="Material Inward" component={MaterialInward} />
         <Drawer.Screen name="Edit Material Inward" component={EditMaterialInward} />
-        <Drawer.Screen name="Expense entry" component={ExpenseEntry} />
-        <Drawer.Screen name="Edit Expense entry" component={EditExpenseEntry} />
+        <Drawer.Screen name="Expense Entry" component={ExpenseEntry} />
+        <Drawer.Screen name="Edit Expense Entry" component={EditExpenseEntry} />
         <Drawer.Screen name="DPR Entry" component={DPREntry} />
         <Drawer.Screen name="DPR Report" component={DPRReport} />
         <Drawer.Screen name="Expense report" component={ExpenseReport} />

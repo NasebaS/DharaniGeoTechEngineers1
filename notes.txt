@@ -227,3 +227,45 @@ caret-left
 //     return colors[Math.floor(Math.random() * colors.length)];
 //   };
  
+
+ const EditExpenseEntry = () => {
+  const navigation = useNavigation();
+
+  // ... your code ...
+
+  return (
+    <View style={styles.container}>
+      {/* Your custom header */}
+      <View style={styles.bluecontainer}>
+        {/*back icon */}
+        <TouchableOpacity style={styles.backButton} onPress={GoBack} activeOpacity={0.8}>
+          <FontAwesome name="caret-left" size={24} color={Colors.primary} />
+        </TouchableOpacity>
+        {/* Header */}
+        <Text style={styles.headerText}>Edit Expense Entry</Text>
+      </View>
+
+      {/* ... rest of your code ... */}
+    </View>
+  );
+};
+
+EditExpenseEntry.navigationOptions = {
+  headerShown: false, // Hide the default header
+};
+
+screenOptions={{ headerShown: false } }
+
+const data = [
+  { id: 1, product: 'Petrol', quantity: 1000 },
+  { id: 2, product: 'Diesel', quantity: 2000 },
+  { id: 3, product: 'Food', quantity: 5000 },
+  { id: 4, product: 'Groceries', quantity: 7000 },
+  { id: 5, product: 'Concrete', quantity: 12000 },
+  { id: 6, product: 'Steel Bars', quantity: 15000 },
+  { id: 7, product: 'Cement', quantity: 8000 },
+  { id: 8, product: 'Sand', quantity: 4000 },
+  { id: 9, product: 'Bricks', quantity: 6000 },
+  { id: 10, product: 'Electrical Supplies', quantity: 3000 },
+ 
+];
