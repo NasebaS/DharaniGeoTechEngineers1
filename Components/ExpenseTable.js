@@ -15,8 +15,8 @@ const TableComponent = ({ data, onDeleteItem }) => {
         key={index}
         data={[
           <Text style={styles.idText}>{index + 1}</Text>,
-          <Text style={styles.productText}>{item.name}</Text>,
-          <Text style={styles.quantityText}>{item.amount}</Text>,
+          <Text style={styles.ExpenseText}>{item.name}</Text>,
+          <Text style={styles.amountText}>{item.amount}</Text>,
           
         ]}
         style={[
@@ -99,22 +99,23 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '600',
   },
-  productText: {
+  ExpenseText: {
     fontSize: 14,
     fontWeight: 'bold',
     color: Colors.primary,
-    left:75
+    textAlign: 'center'
   },
   idText:{
     fontSize: 14,
     fontWeight: 'bold',
     color: Colors.primary,
-    left:25
+   textAlign: 'center'
   },
-  quantityText: {
+  amountText: {
     fontSize: 14,
     color: '#333',
-    fontWeight:'bold'
+    fontWeight:'bold',
+    textAlign: 'center'
   },
   actionButton: {
     padding: 8,

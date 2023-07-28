@@ -4,37 +4,37 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../assets/Colors/Colors';
 
-const MaterialInwardContainer = ({ request}) => {
+const MaterialRequestContainer = ({ request}) => {
   const { requestNumber, requestDate, status,quantity } = request;
 
   const navigation=useNavigation()
   const getStatusColor = () => {
-    if (status === 'Received') {
-      return { backgroundColor: '#4CAF50' }; 
-    } else if (status === 'Pending') {
-      return { backgroundColor: '#FF9800' }; 
+    if (status === 'approved') {
+      return { backgroundColor: '#4CAF50' }; // Green color for approved status
+    } else if (status === 'pending') {
+      return { backgroundColor: '#FF9800' }; // Orange color for pending status
     } else {
-      return { backgroundColor: '#E0E0E0' }; 
+      return { backgroundColor: '#E0E0E0' }; // Gray color for other statuses
     }
   };
 
   const renderStatusIcon = () => {
-    if (status === 'Received') {
+    if (status === 'approved') {
       return (
         <View style={[styles.statusIconContainer, getStatusColor()]}>
           <Icon name="checkmark-circle" size={18} color="#FFF" />
-          <Text style={[styles.statusText, { color: '#FFF' }]}>Received</Text>
+          <Text style={[styles.statusText, { color: '#FFF' }]}>Approved</Text>
         </View>
       );
-    } else if (status === 'Pending') {
+    } else if (status === 'pending') {
       return (
         <View style={[styles.statusIconContainer, getStatusColor()]}>
-          <Icon name="hourglass-outline" size={18} color="#FFF" />
+          <Icon name="hourglass-outline" size={21} color="#FFF" />
           <Text style={[styles.statusText, { color: '#FFF' }]}>Pending</Text>
         </View>
       );
     } else {
-      
+      // You can handle other statuses here
       return (
         <View style={[styles.statusIconContainer, getStatusColor()]}>
           <Icon name="alert-circle" size={24} color="#FFF" />
@@ -44,7 +44,7 @@ const MaterialInwardContainer = ({ request}) => {
     }
   };
 const editPress=()=>{
-navigation.navigate('Edit Material Inward')
+navigation.navigate('Edit Material request')
 }
   return (
     <TouchableOpacity style={styles.container}>
@@ -155,4 +155,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MaterialInwardContainer;
+export default MaterialRequestContainer;

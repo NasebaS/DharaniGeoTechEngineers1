@@ -94,7 +94,7 @@ const EditExpenseEntry = () => {
         <View style={styles.dropdownContainer}>
             
         <SearchableDropdown
-          onTextChange={selectedItem} // You can use this to implement custom search logic if needed
+          onTextChange={selectedItem}
           onItemSelect={onItemSelect}
           containerStyle={{ padding: 10,width:'80%' }}
           textInputStyle={{
@@ -118,7 +118,7 @@ const EditExpenseEntry = () => {
           
           }}
           defaultIndex={0}
-          selectedItems={selectedItem}
+          defaultSelectedItems={selectedItem}
           itemTextStyle={{ color: '#222',fontWeight:'bold' }}
           itemsContainerStyle={{ maxHeight: 140 }}
           items={data}

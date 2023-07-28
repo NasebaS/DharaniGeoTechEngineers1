@@ -5,7 +5,7 @@ const DrawerData = [
     { name: 'Dashboard', iconName: 'dashboard' },
     { name: 'Attendance entry', iconName: 'layout' },
     { name: 'Edit Attendance', iconName: 'carryout' },
-    { name: 'Material request', iconName: 'indent-right' },
+       { name: 'Material Request', iconName: 'indent-left' },
     { name: 'Material Inward', iconName: 'indent-left' },
     { name: 'Expense entry', iconName: 'codesquareo' },
     { name: 'DPR Entry', iconName: 'export2' },

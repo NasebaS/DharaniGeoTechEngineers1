@@ -7,15 +7,17 @@ import Profile from '../Screens/Profile';
 import Dashboard from '../Screens/Dashboard';
 import AttendanceEntry from '../Screens/AttendanceEntry';
 import EditAttendance from '../Screens/EditAttendance';
-import MaterialInward from '../Screens/MaterialInward';
 import MaterialRequest from '../Screens/MaterialRequest';
+import EditMaterialRequest from '../Screens/EditMaterialRequest';
+import MaterialInward from '../Screens/MaterialInward';
 import ExpenseReport from '../Screens/ExpenseReport';
 import ExpenseEntry from '../Screens/ExpenseEntry';
 import DPREntry from '../Screens/DPREntry';
 import DPRReport from '../Screens/DPRReport';
 import PityCashentry from '../Screens/PityCashentry';
 import CustomDrawerContent from '../Components/CustomDrawerContent';
-import IndividualAttendanceEntry from '../Screens/IndividualAttendanceEntry';
+import EditMaterialInward from '../Screens/EditMaterialInward.';
+import EditExpenseEntry from '../Screens/EditExpenseEntry';
 
 const Drawer = createDrawerNavigator();
 const windowWidth = Dimensions.get('window').width;
@@ -39,9 +41,12 @@ function Main() {
         <Drawer.Screen name="Profile" component={Profile} />       
         <Drawer.Screen name="Attendance entry" component={AttendanceEntry} />
         <Drawer.Screen name="Edit Attendance" component={EditAttendance} />
-        <Drawer.Screen name="Material request" component={MaterialRequest} />
+        <Drawer.Screen name="Edit Material request" component={EditMaterialRequest} />
+        <Drawer.Screen name="Material Request" component={MaterialRequest} />
         <Drawer.Screen name="Material Inward" component={MaterialInward} />
+        <Drawer.Screen name="Edit Material Inward" component={EditMaterialInward} />
         <Drawer.Screen name="Expense entry" component={ExpenseEntry} />
+        <Drawer.Screen name="Edit Expense entry" component={EditExpenseEntry} />
         <Drawer.Screen name="DPR Entry" component={DPREntry} />
         <Drawer.Screen name="DPR Report" component={DPRReport} />
         <Drawer.Screen name="Expense report" component={ExpenseReport} />

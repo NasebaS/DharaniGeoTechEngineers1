@@ -1,17 +1,25 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
-import materialInwardData from '../assets/MaterialInwardData';
+import { View, FlatList, StyleSheet,TouchableOpacity } from 'react-native';
+import MaterialInwardData from '../assets/MaterialInwardData';
 import MaterialInwardContainer from './MaterialInwardContainer';
 import Colors from '../assets/Colors/Colors';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const MaterialInward = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={materialInwardData}
+        data={MaterialInwardData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <MaterialInwardContainer request={item} />}
       />
+      <TouchableOpacity
+      style={styles.floatingButton}
+      onPress={() => handleAddPress()}
+      activeOpacity={0.8}
+    >
+      <AntDesign name="pluscircleo" size={24} color="#fff" />
+    </TouchableOpacity>
     </View>
   );
 };
@@ -22,6 +30,21 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.primary,
     paddingVertical:15,
     paddingHorizontal:2
+  },
+  floatingButton: {
+    position: 'absolute',
+    bottom: 30,
+    right: 20,
+    backgroundColor: '#FF0060',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5, 
+    shadowColor: '#000', 
+    shadowOpacity: 0.3, 
+    shadowOffset: { width: 0, height: 2 }, 
   },
 });
 
