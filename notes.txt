@@ -150,3 +150,80 @@ container: {
   00DFA2
 
   FD8D14
+
+  Steel Blue Gradient:
+
+Start Color: #4A6572
+End Color: #22333B
+Earthy Brown Gradient:
+
+Start Color: #60463B
+End Color: #A78E78
+Concrete Gray Gradient:
+
+Start Color: #6C7A89
+End Color: #95A5A6
+Safety Yellow Gradient:
+
+Start Color: #F1C40F
+End Color: #F39C12
+Rustic Orange Gradient:
+
+Start Color: #B9770E
+End Color: #D35400
+Dark Green Gradient:
+
+Start Color: #34495E
+End Color: #2E4053
+
+{renderGradientBackground(['#F1C40F', '#F39C12'])}
+{renderGradientBackground(['#FBB03B', '#F59E0B'])} 
+{renderGradientBackground(['#FDCB35', '#F39200'])}
+
+
+F31559
+
+
+leftcircle AntDesignback
+back
+leftcircleo
+arrowleft
+left
+circledown
+leftsquare
+
+Entypo
+chevron-left
+chevron-small-left
+chevron-with-circle-left
+
+
+caret-left
+
+{/* <PieChart
+  data={pieData}
+  width={Dimensions.get('window').width}
+  height={220}
+  chartConfig={{
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+  }}
+  accessor="amount"
+  backgroundColor="transparent"
+  paddingLeft="15"
+  absolute // For the absolute number display in the center
+/> */}
+
+//   const getPieChartData = () => {
+//     const pieData = Object.keys(expenses).map((category) => ({
+//       name: category,
+//       amount: expenses[category],
+//       color: randomColor(), // You can use a function to generate random colors
+//     }));
+//     return pieData;
+//   };
+//   const pieData = getPieChartData();
+//   const randomColor = () => {
+//     const colors = ['#FF5733', '#33FFB3', '#33A3FF', '#E833FF', '#FFA833'];
+//     return colors[Math.floor(Math.random() * colors.length)];
+//   };
+ 

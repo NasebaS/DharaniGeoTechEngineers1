@@ -4,7 +4,7 @@ import SearchableDropdown from 'react-native-searchable-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../assets/Colors/Colors';
 import Icon from 'react-native-vector-icons/Ionicons'; 
-import Table from '../Components/Table';
+import MaterialTable from './MaterialTable';
 
 const data = [
     { id: 1, name: 'Cement' },
@@ -15,13 +15,13 @@ const data = [
     { id: 6, name: 'Plywood' },
     // Add more materials as needed
   ];
-  const quantities = [
-    { id: 1, value: 1 },
-    { id: 2, value: 2},
-    { id: 3, value: 3 },
-    { id: 4, value: 4 },
-    // Add more quantities as needed
-  ];
+  // const quantities = [
+  //   { id: 1, value: 1 },
+  //   { id: 2, value: 2},
+  //   { id: 3, value: 3 },
+  //   { id: 4, value: 4 },
+  //   // Add more quantities as needed
+  // ];
   
 
 const SearchableDropDown = () => {
@@ -149,7 +149,7 @@ const SearchableDropDown = () => {
         
 </View></View></View></View>
 {selectedItemsTable.length > 0 && (
-        <Table data={selectedItemsTable} onDeleteItem={deleteItem}  />
+        <MaterialTable data={selectedItemsTable} onDeleteItem={deleteItem}  />
       )}
        {/* Save Button */}
        <TouchableOpacity style={styles.saveButton} onPress={onSave}>

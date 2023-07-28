@@ -3,8 +3,9 @@ import React,{useState} from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../assets/Colors/Colors';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 const EditAttendance = () => {
- 
 const navigation=useNavigation()
 
 
@@ -178,23 +179,25 @@ navigation.navigate('Attendance entry')
       <View style={styles.backContainer}>
        <ScrollView contentContainerStyle={styles.scrollContainer}
       >
-           
+          
       
         {AttendanceData.map((data, index) => (
           <Animated.View
           key={index}
           style={ styles.itemContainer}
         >
-            <View style={styles.iconsContainer}>
+            {/* <View style={styles.iconsContainer}>
               <TouchableOpacity onPress={() => handleEditPress()} activeOpacity={0.7}>
                 <AntDesign name="edit" size={24} style={styles.editIcon} />
               </TouchableOpacity>
               
-            </View>
+            </View> */}
             <View style={styles.dataContainer}>
               <View style={styles.dateContainer}>
+              <FontAwesome name="calendar" size={16} color="blue" style={{ marginRight: 8 }} />
                 <Text style={styles.dateText}>Date: {data.date}</Text>
               </View>
+              <View style={styles.alignContainer}>
               <View style={styles.countsContainer}>
               <View style={[styles.countBackground, { backgroundColor: getStatusBackgroundColor('Total') }]}>
                 <Text style={[styles.countText, { color: 'black' }]}>Total: {data.totalEmployees}</Text>
@@ -206,9 +209,16 @@ navigation.navigate('Attendance entry')
                 <Text style={[styles.countText, { color: 'red' }]}>A: {data.absentEmployees}</Text>
               </View>
               <View style={[styles.countBackground, { backgroundColor: getStatusBackgroundColor('Half Day') }]}>
-                <Text style={[styles.countText, { color: 'grey' }]}>HD: {data.halfDayEmployees}</Text>
+                <Text style={[styles.countText, { color: 'orange' }]}>HD: {data.halfDayEmployees}</Text>
               </View>
               </View>
+              <View style={styles.iconsContainer}>
+              <TouchableOpacity onPress={() => handleEditPress()} activeOpacity={0.7}>
+                <AntDesign name="edit" size={24} style={styles.editIcon} />
+              </TouchableOpacity>
+              
+            </View>
+            </View>
             </View>
             </Animated.View>
         ))}
@@ -236,6 +246,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     alignItems: 'center',
+    paddingBottom: 80,
   },
   bluecontainer: {
     position: 'absolute',
@@ -257,13 +268,18 @@ const styles = StyleSheet.create({
  
   countBackground: {
     borderRadius: 8,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    marginVertical: 2,
+    marginLeft:4
   },
   countText: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#666',
+    paddingHorizontal:2,
+   
+       
   },
   contentContainer: {
     flexGrow: 1,
@@ -293,17 +309,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     width: 60,
+    marginBottom:15,
+    
   },
   editIcon: {
-    marginRight: 8,
+   
     backgroundColor: Colors.primary,
     fontSize:20,
     color:"#fff",
-    borderRadius:20,
+    borderRadius:8,
     paddingHorizontal:10,
     paddingVertical:10,
     fontWeight:"bold",
-    
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
     
   },
   addIcon: {
@@ -314,8 +335,10 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   dateContainer: {
-    marginBottom: 8,
-    right:20
+    marginBottom: 2,
+    right:20,
+    flexDirection:'row',
+
   },
   dateText: {
     fontSize: 16,
@@ -323,17 +346,19 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   countsContainer: {
+    paddingTop: -20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal:5,
-    paddingVertical:2
+    right:10,
+    
+    
   },
   
   floatingButton: {
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: Colors.primary,
+    backgroundColor: '#F31559',
     width: 56,
     height: 56,
     borderRadius: 28,
@@ -343,6 +368,11 @@ const styles = StyleSheet.create({
     shadowColor: '#000', 
     shadowOpacity: 0.3, 
     shadowOffset: { width: 0, height: 2 }, 
+  },
+  alignContainer:{
+flexDirection:'row',
+justifyContent:"space-between",
+alignItems:'center'
   },
 });
 export default EditAttendance;
