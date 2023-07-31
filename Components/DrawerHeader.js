@@ -15,7 +15,7 @@ const DrawerHeader = ({ navigation }) => {
   return (
     <View style={styles.drawerHeader}>
       
-    <Image source={require('../assets/images/logobg.png')} style={styles.logoImage} />
+    <Image source={require('../assets/images/logo-new.png')} style={styles.logoImage} />
     <TouchableOpacity onPress={() => handleEditPress()} activeOpacity={0.1} >
         <AntDesign name="edit" size={15}
          style={[styles.editIcon, styles.shadow]}

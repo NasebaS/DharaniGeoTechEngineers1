@@ -1,47 +1,44 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import RNPrint from 'react-native-print';
+// import RNPrint from 'react-native-print';
 
 const ExpenseReport = () => {
   const webviewRef = useRef(null);
+  const[htmlprint , Sethtmlprint] = useState('');
 
-  const printWebView = async () => {
-    try {
-      const { uri } = await webviewRef.current?.takeSnapshot({
-        format: 'png',
-        result: 'file',
-        quality: 0.8,
-      });
+  // const uri = 'http://43.204.47.63:8080/ersjewellers/frmRegisterReports.aspx?mobileview=yes&id=1';
 
-      const options = {
-        html: `<img src="${uri}" width="100%" />`,
-        fileName: 'expense_report',
-        directory: 'Documents',
-      };
+  // const jsCode = " window.ReactNativeWebView.postMessage(document.getElementById('divRecords').innerHTML);";
+  
 
-      const pdf = await RNHTMLtoPDF.convert(options);
-      console.log('PDF File:', pdf.filePath); // You can print the PDF file path
+  // const _onMessage = (message) => {
+  //   // Sethtmlprint(message.nativeEvent.data);  
+  //   Sethtmlprint("<html><head><style>table, th, td {border: 1px solid black;}</style></head>"+message.nativeEvent.data+"</html>");   
+  // console.log('success')
+  // }
 
-      // Print the generated PDF
-      await RNPrint.print({ filePath: pdf.filePath });
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
-  };
+  // const printwebview=async()=>{
+  //   await RNPrint.print({
+  //     html: htmlprint
+  //   })
+  // }
 
   return (
     <View style={styles.container}>
-      <WebView
+      {/* <WebView
         ref={webviewRef}
-        source={{ uri: 'https://www.google.com/' }}
+        source={{ uri: uri }}
         style={styles.webView}
-      />
+        injectedJavaScript={jsCode}
+        onMessage={event => {_onMessage(event)}}
+      /> */}
 
       {/* Floating Print Icon */}
-      <TouchableOpacity style={styles.printIcon} onPress={printWebView}>
+      <TouchableOpacity style={styles.printIcon} 
+      // onPress={printwebview}
+      >
         <Icon name="print" size={25} color="#fff" />
       </TouchableOpacity>
     </View>

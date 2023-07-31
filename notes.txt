@@ -269,3 +269,106 @@ const data = [
   { id: 10, product: 'Electrical Supplies', quantity: 3000 },
  
 ];
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  webView: {
+    flex: 1,
+  },
+  printIcon: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#007AFF', // Blue color for the icon background
+    borderRadius: 30,
+    padding: 10,
+    elevation: 5,
+  },
+});
+
+
+
+import React, { useState, useEffect, useRef } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { WebView } from 'react-native-webview';
+import { FAB, Icon } from 'react-native-elements';
+import RNPrint from 'react-native-print';
+import Root from '../Components/Root';
+
+const ExpenseReport = ({ navigation }) => {
+  const [urlLink, setUrlLink] = useState('');
+  const [htmlPrint, setHtmlPrint] = useState('');
+  const webViewRef = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      let userid = await AsyncStorage.getItem('user_id');
+      setUrlLink(global.appurl + "frmRegisterReports.aspx?mobileview=yes&id=" + userid);
+    })();
+    const unsubscribe = navigation.addListener('focus', () => {
+      setUrlLink('');
+      (async () => {
+        let userid = await AsyncStorage.getItem('user_id');
+        setTimeout(() => {
+          setUrlLink(global.Appurl + "frmRegisterReports.aspx?mobileview=yes&id=" + userid);
+        }, 100);
+      })();
+    });
+    return unsubscribe;
+  }, [])
+
+  const handleWebViewMessage = (event) => {
+    setHtmlPrint("<html><head><style>table, th, td {border: 1px solid black;}</style></head>" + event.nativeEvent.data + "</html>");
+  };
+
+  const printWebView = async () => {
+    try {
+      await RNPrint.print({
+        html: htmlPrint,
+      });
+    } catch (error) {
+      console.error('Error printing:', error);
+    }
+  };
+
+  const jsCode = " window.ReactNativeWebView.postMessage(document.getElementById('divRecords').innerHTML);";
+
+  return (
+    <Root>
+      <View style={styles.container}>
+        {/* Other content */}
+        <WebView
+          ref={webViewRef}
+          source={{ uri: urlLink }}
+          style={{ marginTop: 20 }}
+          injectedJavaScript={jsCode}
+          onMessage={handleWebViewMessage}
+        />
+        <FAB
+          onPress={printWebView}
+          icon={<Icon name="print" type="font-awesome" style={{ lineHeight: 0 }} size={35} color="white" />}
+          buttonStyle={{ padding: 0, backgroundColor: '#9f1f37', width: 70, height: 70, borderRadius: 50 }}
+          containerStyle={{ position: 'absolute', bottom: 65, right: 10 }}
+        />
+      </View>
+    </Root>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderTopWidth: 0,
+    backgroundColor: '#fff'
+  },
+  // Other styles...
+});
+
+export default ExpenseReport;
+#007AFF blue
