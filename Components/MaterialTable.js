@@ -5,18 +5,21 @@ import { Table, Row } from 'react-native-table-component';
 import Colors from '../assets/Colors/Colors';
 
 const TableComponent = ({ data, onDeleteItem }) => {
-  const tableHead = ['Product', 'Quantity', 'Action'];
+  const tableHead = ['S.No','Product', 'Quantity', 'Action'];
+
+
 
   const renderRow = (item, index) => {
-    const flexArr = [3, 1, 1];
+    const flexArr = [1,3, 1.5, 1];
 
     return (
       <Row
-        key={index}
+        key={item.id}
         data={[
-          <Text style={styles.productText}>{item.product.name}</Text>,
+          <Text style={styles.productText}>{item.id}</Text>,
+          <Text style={styles.productText}>{item.name}</Text>,
           <Text style={styles.quantityText}>{item.quantity}</Text>,
-          <TouchableOpacity onPress={() => onDeleteItem(item.product.id)} style={styles.actionButton}>
+          <TouchableOpacity onPress={() => onDeleteItem(item.id)} style={styles.actionButton}>
             <Icon name="trash" size={24} color="#F15A59" />
           </TouchableOpacity>
         ]}
@@ -30,7 +33,7 @@ const TableComponent = ({ data, onDeleteItem }) => {
     );
   };
 
-  const headerFlexArr = [3, 1, 1];
+  const headerFlexArr = [1,3, 1.5, 1];
 
   return (
     <View style={styles.container}>
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 5,
-    marginTop: -30
+    marginTop: -70
   },
   tableHeader: {
     height: 50,
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   tableRow: {
-    height: 70,
+    height: 50,
     flexDirection: 'row',
     paddingHorizontal: 10,
     alignItems: 'center',

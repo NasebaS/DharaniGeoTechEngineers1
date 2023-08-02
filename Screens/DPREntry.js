@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import PurchaseEntry from './PurchaseEntry'
 
 const DPREntry = () => {
   return (
     <View>
-      <Text>DPREntry</Text>
+     
+      <PurchaseEntry/>
     </View>
   )
 }

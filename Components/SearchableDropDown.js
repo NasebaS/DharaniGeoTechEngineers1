@@ -4,15 +4,15 @@ import SearchableDropdown from 'react-native-searchable-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../assets/Colors/Colors';
 import Icon from 'react-native-vector-icons/Ionicons'; 
-import MaterialTable from './MaterialTable';
+import TableComponent from '../Components/MaterialTable';
 
 const data = [
-    { id: 1, name: 'Cement' },
-    { id: 2, name: 'Steel' },
-    { id: 3, name: 'Bricks' },
-    { id: 4, name: 'Sand' },
-    { id: 5, name: 'Concrete Blocks' },
-    { id: 6, name: 'Plywood' },
+    {  name: 'Cement' },
+    {  name: 'Steel' },
+    {  name: 'Bricks' },
+    {  name: 'Sand' },
+    {  name: 'Concrete Blocks' },
+    {  name: 'Plywood' },
     
   ];
   
@@ -24,7 +24,8 @@ const SearchableDropDown = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [selectedItemsTable, setSelectedItemsTable] = useState([]); 
-    
+    const [productList, setProductList] = useState([]);
+    const [orderNumber, setOrderNumber] = useState('');
 
    const handleDateChange = (event, selectedDate) => {
     setShowDatePicker(Platform.OS === 'ios'); // Show the date picker on iOS only
@@ -38,29 +39,45 @@ const SearchableDropDown = () => {
     });
     return formattedDate;
   };
-  const onItemSelect = (item) => {
-    setSelectedItem(item);   
-    console.log(item)
+  // const onItemSelect = (item) => {
+  //   setSelectedItem(item);   
+  //   console.log(item)
+  // };
+  const handleRemoveProduct = (id) => {
+    setProductList((prevProductList) => prevProductList.filter((product) => product.id !== id));
   };
-    const deleteItem = (itemId) => {
-      setSelectedItemsTable((prevItems) => 
-      prevItems.filter((item) => item.product.id !== itemId));
-    };
  
-    const onQuantitySelect = (item) => {
-      setSelectedQuantity(item);
-      console.log(item)
+    // const onQuantitySelect = (item) => {
+    //   setSelectedQuantity(item);
+    //   console.log(item)
     
-    };
-    const onAddToTable = () => {
-      if (selectedItem && selectedQuantity) {
-        setSelectedItemsTable((prevSelectedItems) => [
-          ...prevSelectedItems,
-          { product: selectedItem, quantity: selectedQuantity },
-        ]);
+    // };
+    const handleAddProduct = () => {
+      if (selectedItem && selectedQuantity.trim() !== '') {
+        let newProduct;
+        const serializedId = productList.length + 1; 
+        // Check if the selected item exists in the data array
+        const existingProduct = data.find((product) => product.name === selectedItem.name);
+        
+        if (existingProduct) {
+          newProduct = {
+            id: serializedId.toString(),
+            name: existingProduct.name,
+            quantity: selectedQuantity.trim(),
+          };
+        } else {
+        
+          // If the selected item doesn't exist in the data array, add it as a new product
+          newProduct = {
+            id: serializedId.toString(),
+            name: selectedItem.name.trim(),
+            quantity: selectedQuantity.trim(),
+          };
+        }
+  
+        setProductList((prevProductList) => [...prevProductList, newProduct]);
         setSelectedItem({});
-      setSelectedQuantity({});
-        console.log(selectedItemsTable)
+        setSelectedQuantity('');
       }
     };
     const onSave = () => {
@@ -74,7 +91,19 @@ const SearchableDropDown = () => {
       <View style={styles.bluecontainer}/>
       
       <View style={styles.backContainer}>
+      <View style={styles.dateAndOrderRowContainer}>
+      <View style={styles.orderNumberContainer}>
+        <Text style={styles.orderNumberText}>Order No:</Text>
+        <TextInput
+          style={styles.orderNumberInput}
+          value={orderNumber}
+          onChangeText={setOrderNumber}
+          keyboardType="numeric"
+          placeholder="Order Number"
+        />
+      </View>
          {/* Date Picker */}
+         <View style={styles.datePickerRowContainer}>
        <TouchableOpacity style={styles.datePickerContainer} onPress={() => setShowDatePicker(true)}>
         <Text style={styles.datePickerText}>
         {formatDate(selectedDate)}</Text>
@@ -87,7 +116,7 @@ const SearchableDropDown = () => {
           onChange={handleDateChange}
         />
       )}
-
+</View></View>
       {/*Product  DropDown*/}
       <View style={styles.dropdownRowContainer}>
       <View style={styles.dropdownWrapper}>
@@ -95,19 +124,18 @@ const SearchableDropDown = () => {
         <View style={styles.dropdownContainer}>
             
         <SearchableDropdown
-          onTextChange={selectedItem} // You can use this to implement custom search logic if needed
-          onItemSelect={onItemSelect}
-          containerStyle={{ padding: 10,width:'80%' }}
+          onTextChange={(text) => setSelectedItem({ name: text })} // Set name in selected item
+          onItemSelect={(item) => setSelectedItem(item)}
+          containerStyle={{ padding: 10, width: '80%' }}
           textInputStyle={{
             padding: 12,
             borderWidth: 2,
-            borderColor: '#42a5f5', 
-  borderRadius: 8,
-  backgroundColor: '#fff',
-  color: '#42a5f5', 
-  fontWeight: 'bold',
-  fontSize: 16,
-
+            borderColor: '#42a5f5',
+            borderRadius: 8,
+            backgroundColor: '#fff',
+            color: '#42a5f5',
+            fontWeight: 'bold',
+            fontSize: 16,
           }}
           itemStyle={{
             padding: 10,
@@ -116,35 +144,36 @@ const SearchableDropDown = () => {
             backgroundColor: '#f7f7f7',
             borderColor: '#BACDDB',
             borderWidth: 1.5,
-          
           }}
           defaultIndex={0}
           selectedItems={selectedItem}
-          itemTextStyle={{ color: '#222',fontWeight:'bold' }}
+          itemTextStyle={{ color: '#222', fontWeight: 'bold' }}
           itemsContainerStyle={{ maxHeight: 140 }}
           items={data}
-          placeholder="Select the Product"
+          placeholder="Select the Product or Enter New Product"
           resetValue={false}
           underlineColorAndroid="transparent"
         />
           <View style={styles.dropdownWrapper}>
           <View style={styles.quantityInputContainer}>
-        <TextInput
+          <TextInput
           style={styles.quantityInput}
           value={selectedQuantity}
-          onChangeText={onQuantitySelect}
+          onChangeText={setSelectedQuantity}
           keyboardType="numeric"
           placeholder="Quantity"
         />
-        <TouchableOpacity style={styles.addButton} onPress={onAddToTable}>
+        <TouchableOpacity style={styles.addButton} onPress={handleAddProduct}>
         <Icon name="add-circle-sharp" size={50} color='#0E5583' />
         </TouchableOpacity>
       </View>
         
-</View></View></View></View>
-{selectedItemsTable.length > 0 && (
-        <MaterialTable data={selectedItemsTable} onDeleteItem={deleteItem}  />
-      )}
+</View>
+</View>
+</View>
+</View>
+<TableComponent data={productList} onDeleteItem={handleRemoveProduct} />
+
        {/* Save Button */}
        <TouchableOpacity style={styles.saveButton} onPress={onSave}>
         <Text style={styles.saveButtonText}>Save</Text>
@@ -188,14 +217,56 @@ const SearchableDropDown = () => {
         flex: 1,
         marginTop: 5, 
       },
-      datePickerContainer: {
-        marginTop:10,
-        width: '100%',
-        top:-80,
-        paddingVertical: 10,
-        paddingHorizontal: 20,       
+      dateAndOrderRowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: 10,
+        top:-100,
+        alignItems:'center'
+      },
+      orderNumberContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+        marginRight:5,
+        flex: 1,
+        marginTop:20
+       
+      },
+      orderNumberText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginRight: 10,
+        color:'#fff'
+      },
+      orderNumberInput: {
+        // flex: 1,
+        borderWidth: 2,
+        borderColor: '#42a5f5',
         borderRadius: 8,
+        paddingHorizontal: 10,
         backgroundColor: '#fff',
+        color: '#42a5f5', 
+        fontWeight: 'bold',
+        fontSize: 16,
+        paddingVertical: 8,
+      },
+      datePickerRowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        marginBottom: 10,
+        width:250,
+        height:50,
+        right:-100
+      },
+      datePickerContainer: {
+        flex: 0.5, // Reduce the width of the date picker by adjusting the flex value
+    marginRight: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    backgroundColor: '#fff',
       },
       datePickerText: {
         fontSize: 18,
@@ -206,7 +277,7 @@ const SearchableDropDown = () => {
         flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
-top:-50,
+top:-90,
       },
       selectOptionText: {
         fontSize: 20,
